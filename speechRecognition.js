@@ -9,6 +9,7 @@ recognition.lang = "pt-BR"
 recognition.start()
 
 recognition.addEventListener("result", onSpeak)
+recognition.addEventListener("end", () => recognition.start())
 
 function onSpeak(e) {
   guess = e.results[0][0].transcript
