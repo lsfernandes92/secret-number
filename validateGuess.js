@@ -4,7 +4,7 @@ function validateGuess(guess) {
   const number = +guess
 
   if (isText(number)) {
-    divErrorMessage.innerHTML += `<div>The guess must be a number.</div>`
+    divErrorMessage.innerHTML = `<div>The guess must be a number.</div>`
     divGuess.append(divErrorMessage)
     return
   }
@@ -24,6 +24,8 @@ function validateGuess(guess) {
     document.body.innerHTML = `
       <h2>You've made it!</h2>
       <h3>The secret number was ${secretNumber}</h3>
+
+      <button id="play-again" class="btn-play-again">Play again</button>
     `
   } else if (number > secretNumber) {
     divErrorMessage.innerHTML = `
@@ -49,3 +51,9 @@ function isText(guess) {
 function notBetweenLimits(guess) {
   return guess < smallerNumber || guess > largerNumber
 }
+
+document.body.addEventListener("click", event => {
+  if (event.target.id == "play-again") {
+    window.location.reload()
+  }
+})
